@@ -37,6 +37,7 @@ dependencies:
   timezone: ^0.8.0
   dropdown_search: ^5.0.2
   flutter_bloc: ^8.0.1
+  sqflite: ^2.0.2+1
 dev_dependencies:
   flutter_lints: ^1.0.0
   flutter_gen_runner: ^4.3.0
@@ -90,6 +91,7 @@ flutter:
     - assets/svg/
     - assets/images/
     - assets/tzdb-2022a.tar.lz
+    - assets/db/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
