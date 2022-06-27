@@ -5,12 +5,16 @@
   "english": "English",
   "medicine": "Medicines",
   "mss_error": "Error",
+  "mss_warning_exit": "Are you sure to exit app?",
   "patients": "Patients",
   "service": "Services",
   "service_app_bar": "Service Information",
   "txt_about_app": "About app",
+  "txt_cancel": "Cancel",
+  "txt_exit": "Exit",
   "txt_language": "Language",
   "txt_log_out": "Log Out",
   "txt_price": "Price: {} VNĐ",
+  "txt_yes": "Yes",
   "vietnam": "Việt Nam"
 }

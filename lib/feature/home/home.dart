@@ -1,14 +1,14 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:task_management/commons/presentation/res/color.dart';
 import 'package:task_management/feature/doctor/doctor_screen.dart';
-import 'package:task_management/feature/home/widgets/drawer/bloc/app_drawer_cubit.dart';
-import 'package:task_management/feature/home/widgets/drawer/drawable.dart';
+import 'package:task_management/feature/home/widgets/drawable.dart';
 import 'package:task_management/feature/home/widgets/task_group.dart';
+import 'package:task_management/feature/medicine/medicine_screen.dart';
 import 'package:task_management/feature/service/service_screen.dart';
 import 'package:task_management/generated/assets.gen.dart';
 import 'package:task_management/generated/locale_keys.g.dart';
@@ -23,33 +23,115 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: BlocProvider(
-        create: (context) => AppDrawerCubit(),
-        child: const AppDrawer(),
-      ),
-      appBar: AppBar(
-        centerTitle: true,
-        leading: Builder(builder: (context) {
-          return IconButton(
-            icon: const Icon(
-              Icons.menu,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-          );
-        }),
-        backgroundColor: AppColors.primaryColor,
-        title: Text(
-          LocaleKeys.app_title.tr(),
-          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-              fontWeight: FontWeight.bold, fontSize: 22, color: Colors.white),
+    return WillPopScope(
+      onWillPop: () async {
+        _warningBeforeExitApp(context);
+        return false;
+      },
+      child: Scaffold(
+        drawer: const AppDrawer(),
+        drawerEnableOpenDragGesture: false,
+        appBar: AppBar(
+          centerTitle: true,
+          leading: Builder(builder: (context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          }),
+          backgroundColor: AppColors.primaryColor,
+          title: Text(
+            LocaleKeys.app_title.tr(),
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                fontWeight: FontWeight.bold, fontSize: 22, color: Colors.white),
+          ),
         ),
+        body: _buildBody(),
       ),
-      body: _buildBody(),
     );
+  }
+
+  Future<dynamic> _warningBeforeExitApp(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (ctx) {
+          return Center(
+            child: Container(
+              width: 300,
+              height: 300,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.deepOrange, width: 2),
+              ),
+              child: Scaffold(
+                backgroundColor: Colors.transparent,
+                body: Column(
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Center(
+                      child: Icon(
+                        Icons.warning,
+                        color: Colors.red,
+                        size: 72,
+                      ),
+                    ),
+                    const Spacer(),
+                    Center(
+                      child: Text(
+                        LocaleKeys.mss_warning_exit.tr(),
+                        style: Theme.of(context).textTheme.displayMedium,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const Spacer(),
+                    Container(
+                      width: double.infinity,
+                      height: 0.5,
+                      color: Colors.black,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text(LocaleKeys.txt_cancel.tr()),
+                          ),
+                        ),
+                        Expanded(
+                          child: DecoratedBox(
+                            decoration: const BoxDecoration(
+                                border: Border(
+                              left: BorderSide(
+                                color: Colors.black,
+                                width: 0.5,
+                              ),
+                            )),
+                            child: TextButton(
+                              onPressed: () {
+                                exit(0);
+                              },
+                              child: Text(LocaleKeys.txt_yes.tr()),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
   }
 
   Stack _buildBody() {
@@ -136,14 +218,20 @@ class _HomeScreenState extends State<HomeScreen> {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: TaskGroupContainer(
-              color: Colors.blue,
-              icon: SizedBox(
-                width: 100,
-                height: 100,
-                child: Assets.images.medicine.image(fit: BoxFit.fill),
-              ),
-              title: LocaleKeys.medicine.tr()),
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              Navigator.pushNamed(context, MedicineScreen.routeName);
+            },
+            child: TaskGroupContainer(
+                color: Colors.blue,
+                icon: SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: Assets.images.medicine.image(fit: BoxFit.fill),
+                ),
+                title: LocaleKeys.medicine.tr()),
+          ),
         ),
       ],
     );

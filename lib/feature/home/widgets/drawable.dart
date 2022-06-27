@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:task_management/commons/presentation/res/color.dart';
 import 'package:task_management/generated/locale_keys.g.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
@@ -13,7 +16,6 @@ class AppDrawer extends StatelessWidget {
         children: [
           _renderDrawerHeader(context),
           _renderSelectLanguage(context),
-          // const Spacer(),
           ListTile(
             leading: const Icon(
               Icons.info,
@@ -23,12 +25,30 @@ class AppDrawer extends StatelessWidget {
             subtitle: const Text('Tiny Flutter Team'),
             isThreeLine: true,
             dense: true,
+            onTap: () async {
+              var uri = Uri.parse("https://tinyflutterteam.com/");
+              if (await canLaunchUrl(uri)) {
+                await launchUrl(uri);
+              }
+            },
           ),
           ListTile(
             leading: const Icon(Icons.logout_outlined),
             title: Text(
               LocaleKeys.txt_log_out.tr(),
             ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          ListTile(
+            leading: const Icon(Icons.exit_to_app),
+            title: Text(
+              LocaleKeys.txt_exit.tr(),
+            ),
+            onTap: () async {
+              await _warningBeforeExitApp(context);
+            },
           ),
         ],
       ),
@@ -135,5 +155,83 @@ class AppDrawer extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<dynamic> _warningBeforeExitApp(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (ctx) {
+          return Center(
+            child: Container(
+              width: 300,
+              height: 300,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.deepOrange, width: 2),
+              ),
+              child: Scaffold(
+                backgroundColor: Colors.transparent,
+                body: Column(
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Center(
+                      child: Icon(
+                        Icons.warning,
+                        color: Colors.red,
+                        size: 72,
+                      ),
+                    ),
+                    const Spacer(),
+                    Center(
+                      child: Text(
+                        LocaleKeys.mss_warning_exit.tr(),
+                        style: Theme.of(context).textTheme.displayMedium,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const Spacer(),
+                    Container(
+                      width: double.infinity,
+                      height: 0.5,
+                      color: Colors.black,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text(LocaleKeys.txt_cancel.tr()),
+                          ),
+                        ),
+                        Expanded(
+                          child: DecoratedBox(
+                            decoration: const BoxDecoration(
+                                border: Border(
+                              left: BorderSide(
+                                color: Colors.black,
+                                width: 0.5,
+                              ),
+                            )),
+                            child: TextButton(
+                              onPressed: () {
+                                exit(0);
+                              },
+                              child: Text(LocaleKeys.txt_yes.tr()),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
   }
 }

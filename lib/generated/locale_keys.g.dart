@@ -7,13 +7,17 @@ abstract class  LocaleKeys {
   static const english = 'english';
   static const medicine = 'medicine';
   static const mss_error = 'mss_error';
+  static const mss_warning_exit = 'mss_warning_exit';
   static const patients = 'patients';
   static const service = 'service';
   static const service_app_bar = 'service_app_bar';
   static const txt_about_app = 'txt_about_app';
+  static const txt_cancel = 'txt_cancel';
+  static const txt_exit = 'txt_exit';
   static const txt_language = 'txt_language';
   static const txt_log_out = 'txt_log_out';
   static const txt_price = 'txt_price';
+  static const txt_yes = 'txt_yes';
   static const vietnam = 'vietnam';
 
 }

@@ -5,12 +5,16 @@
   "english": "English",
   "medicine": "Thuốc",
   "mss_error": "Lỗi",
+  "mss_warning_exit": "Bạnc có chắc chắn thoát ứng dụng không?",
   "patients": "Bệnh nhân",
   "service": "Dịch vụ",
   "service_app_bar": "Thông Tin Dịch Vụ",
   "txt_about_app": "Giới thiệu",
+  "txt_cancel": "Huỷ",
+  "txt_exit": "Thoát",
   "txt_language": "Ngôn ngữ",
   "txt_log_out": "Đăng Xuất",
   "txt_price": "Giá: {} VNĐ",
+  "txt_yes": "Có",
   "vietnam": "Việt Nam"
 }

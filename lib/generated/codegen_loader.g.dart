@@ -21,13 +21,17 @@ class CodegenLoader extends AssetLoader{
   "english": "English",
   "medicine": "Medicines",
   "mss_error": "Error",
+  "mss_warning_exit": "Are you sure to exit app?",
   "patients": "Patients",
   "service": "Services",
   "service_app_bar": "Service Information",
   "txt_about_app": "About app",
+  "txt_cancel": "Cancel",
+  "txt_exit": "Exit",
   "txt_language": "Language",
   "txt_log_out": "Log Out",
   "txt_price": "Price: {} VNĐ",
+  "txt_yes": "Yes",
   "vietnam": "Việt Nam"
 };
 static const Map<String,dynamic> vi = {
@@ -37,13 +41,17 @@ static const Map<String,dynamic> vi = {
   "english": "English",
   "medicine": "Thuốc",
   "mss_error": "Lỗi",
+  "mss_warning_exit": "Bạnc có chắc chắn thoát ứng dụng không?",
   "patients": "Bệnh nhân",
   "service": "Dịch vụ",
   "service_app_bar": "Thông Tin Dịch Vụ",
   "txt_about_app": "Giới thiệu",
+  "txt_cancel": "Huỷ",
+  "txt_exit": "Thoát",
   "txt_language": "Ngôn ngữ",
   "txt_log_out": "Đăng Xuất",
   "txt_price": "Giá: {} VNĐ",
+  "txt_yes": "Có",
   "vietnam": "Việt Nam"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "vi": vi};
