@@ -1,12 +1,16 @@
 {
   "app_title": "Quản lý bệnh viện",
   "doctor": "Bác sĩ",
+  "doctor_app_bar": "Thông Tin Bác Sĩ",
   "english": "English",
   "medicine": "Thuốc",
+  "mss_error": "Lỗi",
   "patients": "Bệnh nhân",
   "service": "Dịch vụ",
+  "service_app_bar": "Thông Tin Dịch Vụ",
   "txt_about_app": "Giới thiệu",
   "txt_language": "Ngôn ngữ",
   "txt_log_out": "Đăng Xuất",
+  "txt_price": "Giá: {} VNĐ",
   "vietnam": "Việt Nam"
 }

@@ -3,12 +3,15 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_it/get_it.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:task_management/commons/presentation/res/color.dart';
 import 'package:task_management/commons/presentation/routes/routes.dart';
 import 'package:timezone/data/latest.dart' as tz2;
 import 'package:path/path.dart';
 import 'generated/codegen_loader.g.dart';
+
+final getIt = GetIt.instance;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,15 +23,21 @@ void main() async {
   if (!exists) {
     try {
       await Directory(dirname(path)).create(recursive: true);
-    } catch (_) {
-
-    }
-    ByteData data = await rootBundle.load(join("assets/db", "local_database.db"));
+    } catch (_) {}
+    ByteData data =
+        await rootBundle.load(join("assets/db", "local_database.db"));
     List<int> bytes =
         data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
     await File(path).writeAsBytes(bytes, flush: true);
   }
+
+  getIt.registerSingleton<Database>(
+    await openDatabase(
+      path,
+      readOnly: false,
+    ),
+  );
 
   runApp(
     EasyLocalization(

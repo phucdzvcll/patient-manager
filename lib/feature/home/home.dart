@@ -1,13 +1,15 @@
 import 'dart:async';
-import 'package:easy_localization/easy_localization.dart';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:task_management/commons/presentation/res/color.dart';
+import 'package:task_management/feature/doctor/doctor_screen.dart';
 import 'package:task_management/feature/home/widgets/drawer/bloc/app_drawer_cubit.dart';
 import 'package:task_management/feature/home/widgets/drawer/drawable.dart';
 import 'package:task_management/feature/home/widgets/task_group.dart';
+import 'package:task_management/feature/service/service_screen.dart';
 import 'package:task_management/generated/assets.gen.dart';
 import 'package:task_management/generated/locale_keys.g.dart';
 
@@ -101,22 +103,35 @@ class _HomeScreenState extends State<HomeScreen> {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1,
-          child: TaskGroupContainer(
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              Navigator.pushNamed(context, DoctorScreen.routeName);
+            },
+            child: TaskGroupContainer(
               color: Colors.orange,
               icon: Assets.images.doctor.image(width: 100, height: 100),
-              title: LocaleKeys.doctor.tr()),
+              title: LocaleKeys.doctor.tr(),
+            ),
+          ),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1.3,
-          child: TaskGroupContainer(
-              color: Colors.green,
-              icon: SizedBox(
-                width: 120,
-                height: 120,
-                child: Assets.images.insurance.image(fit: BoxFit.fill),
-              ),
-              title: LocaleKeys.service.tr()),
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              Navigator.pushNamed(context, ServiceScreen.routeName);
+            },
+            child: TaskGroupContainer(
+                color: Colors.green,
+                icon: SizedBox(
+                  width: 120,
+                  height: 120,
+                  child: Assets.images.insurance.image(fit: BoxFit.fill),
+                ),
+                title: LocaleKeys.service.tr()),
+          ),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 1,

@@ -12,10 +12,12 @@ class AppColors {
         primaryColor: primaryColor,
         primarySwatch: primarySwatch,
         appBarTheme: AppBarTheme(
-          backgroundColor: bgColor,
-          iconTheme: IconThemeData(
-            color: Colors.grey[500],
+          backgroundColor: primaryColor,
+          iconTheme: const IconThemeData(
+            color: Colors.white,
           ),
+          centerTitle: true,
+          titleTextStyle: const TextStyle(color: Colors.white, fontSize: 22),
           elevation: 0,
           foregroundColor: Colors.grey[600],
         ),
