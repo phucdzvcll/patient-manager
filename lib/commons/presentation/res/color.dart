@@ -4,13 +4,25 @@ class AppColors {
   static bool isDarkMode = false;
 
   static Color get primaryColor => Colors.pink[400]!;
+
   static MaterialColor get primarySwatch => Colors.pink;
+
   static Color get accentColor => isDarkMode ? primaryColor : Colors.grey[600]!;
+
   static Color get bgColor => isDarkMode ? Colors.black : Colors.grey[50]!;
 
   static ThemeData get getTheme => ThemeData(
         primaryColor: primaryColor,
         primarySwatch: primarySwatch,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              primary: const Color(0xff094881),
+              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+              textStyle:
+                  const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50))),
+        ),
         appBarTheme: AppBarTheme(
           backgroundColor: primaryColor,
           iconTheme: const IconThemeData(

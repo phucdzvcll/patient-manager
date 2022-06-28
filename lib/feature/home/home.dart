@@ -9,6 +9,7 @@ import 'package:task_management/feature/doctor/doctor_screen.dart';
 import 'package:task_management/feature/home/widgets/drawable.dart';
 import 'package:task_management/feature/home/widgets/task_group.dart';
 import 'package:task_management/feature/medicine/medicine_screen.dart';
+import 'package:task_management/feature/patient/patient_menu.dart';
 import 'package:task_management/feature/service/service_screen.dart';
 import 'package:task_management/generated/assets.gen.dart';
 import 'package:task_management/generated/locale_keys.g.dart';
@@ -177,10 +178,15 @@ class _HomeScreenState extends State<HomeScreen> {
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
           mainAxisCellCount: 1.3,
-          child: TaskGroupContainer(
-              color: Colors.lightGreen,
-              icon: Assets.images.patient.image(width: 120, height: 160),
-              title: LocaleKeys.patients.tr()),
+          child: GestureDetector(
+            onTap: (){
+              Navigator.pushNamed(context, PatientMenu.routeName);
+            },
+            child: TaskGroupContainer(
+                color: Colors.lightGreen,
+                icon: Assets.images.patient.image(width: 120, height: 160),
+                title: LocaleKeys.patients.tr()),
+          ),
         ),
         StaggeredGridTile.count(
           crossAxisCellCount: 1,
