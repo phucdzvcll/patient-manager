@@ -16,7 +16,7 @@ class MedicineScreen extends StatelessWidget {
       create: (context) => MedicineCubit()..getMedicines(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text(LocaleKeys.service_app_bar.tr()),
+          title: Text(LocaleKeys.txt_medicine_info.tr()),
         ),
         body: Builder(builder: (context) {
           return BlocConsumer<MedicineCubit, MedicineState>(

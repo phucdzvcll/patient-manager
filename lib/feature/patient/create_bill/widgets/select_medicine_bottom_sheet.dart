@@ -83,8 +83,8 @@ class _SelectMedicineState extends State<SelectMedicine> {
                 child: Column(
                   children: [
                     AppTextField(
-                      hint: "Tìm dịch vụ",
-                      label: "Tìm kiếm",
+                      hint: LocaleKeys.txt_seatch_medicine.tr(),
+                      label: LocaleKeys.txt_seatch.tr(),
                       prefixIcon: const Icon(Icons.search),
                       controller: _searchController,
                     ),
@@ -161,16 +161,9 @@ class _SelectMedicineState extends State<SelectMedicine> {
                   const SizedBox(
                     height: 6,
                   ),
-                  Row(
-                    children: [
-                      const Text("Giá: "),
-                      const SizedBox(
-                        width: 2,
-                      ),
-                      Text(medicineSelect.price.format()),
-                      const Text(" VNĐ"),
-                      Text("/${medicineSelect.unit}"),
-                    ],
+                  Text(
+                    LocaleKeys.txt_price
+                        .tr(args: [medicineSelect.price.format()]),
                   ),
                 ],
               ),

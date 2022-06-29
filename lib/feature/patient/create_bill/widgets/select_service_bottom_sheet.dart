@@ -83,8 +83,8 @@ class _SelectServiceState extends State<SelectService> {
                 child: Column(
                   children: [
                     AppTextField(
-                      hint: "Tìm dịch vụ",
-                      label: "Tìm kiếm",
+                      hint: LocaleKeys.txt_seatch_service.tr(),
+                      label: LocaleKeys.txt_seatch.tr(),
                       prefixIcon: const Icon(Icons.search),
                       controller: _searchController,
                     ),
@@ -161,16 +161,7 @@ class _SelectServiceState extends State<SelectService> {
                   const SizedBox(
                     height: 6,
                   ),
-                  Row(
-                    children: [
-                      const Text("Giá: "),
-                      const SizedBox(
-                        width: 2,
-                      ),
-                      Text(service.price.format()),
-                      const Text(" VNĐ"),
-                    ],
-                  ),
+                  Text(LocaleKeys.txt_price.tr(args: [service.price.format()])),
                 ],
               ),
             ),

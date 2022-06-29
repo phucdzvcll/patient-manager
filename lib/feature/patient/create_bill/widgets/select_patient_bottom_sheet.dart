@@ -82,8 +82,8 @@ class _SelectPatientState extends State<SelectPatient> {
           child: Column(
             children: [
               AppTextField(
-                hint: "Tìm bệnh nhân",
-                label: "Tìm kiếm",
+                hint: LocaleKeys.txt_seatch_patient.tr(),
+                label: LocaleKeys.txt_seatch.tr(),
                 prefixIcon: const Icon(Icons.search),
                 controller: _searchController,
               ),

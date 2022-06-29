@@ -102,12 +102,12 @@ class _CreateBillScreenState extends State<CreateBillScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
-                            children: const [
-                              Icon(
+                            children: [
+                              const Icon(
                                 Icons.medical_services_outlined,
                                 color: Colors.green,
                               ),
-                              Text("Dịch vụ"),
+                              Text(LocaleKeys.service.tr()),
                             ],
                           ),
                         ),
@@ -141,12 +141,12 @@ class _CreateBillScreenState extends State<CreateBillScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
-                            children: const [
-                              Icon(
+                            children: [
+                              const Icon(
                                 Icons.medical_information_sharp,
                                 color: Colors.green,
                               ),
-                              Text("Thuốc"),
+                              Text(LocaleKeys.medicine.tr()),
                             ],
                           ),
                         ),
@@ -160,8 +160,8 @@ class _CreateBillScreenState extends State<CreateBillScreen> {
               ),
               Row(
                 children: [
-                  const Text(
-                    "Tổng: ",
+                  Text(
+                    LocaleKeys.txt_total.tr(),
                   ),
                   Text(
                     totalPrice.format(),
@@ -244,7 +244,7 @@ class _CreateBillScreenState extends State<CreateBillScreen> {
                           }
                         }
                       },
-                child: const Text("Tạo đơn hàng"),
+                child: Text(LocaleKeys.txt_create_bill.tr()),
               ),
             ],
           ),
@@ -301,17 +301,17 @@ class _CreateBillScreenState extends State<CreateBillScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "Dịch vụ",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        Text(
+          LocaleKeys.service.tr(),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
         ),
         const SizedBox(
           height: 5,
         ),
         Row(
           children: [
-            const Text(
-              "Tổng: ",
+            Text(
+              LocaleKeys.txt_total.tr(),
             ),
             Text(
               totalPrice.format(),
@@ -333,17 +333,17 @@ class _CreateBillScreenState extends State<CreateBillScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "Thuốc",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        Text(
+          LocaleKeys.medicine.tr(),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
         ),
         const SizedBox(
           height: 5,
         ),
         Row(
           children: [
-            const Text(
-              "Tổng: ",
+            Text(
+              LocaleKeys.txt_total.tr(),
             ),
             Text(
               totalPrice.format(),
@@ -418,12 +418,8 @@ class _CreateBillScreenState extends State<CreateBillScreen> {
           const SizedBox(
             height: 10,
           ),
-          Row(
-            children: [
-              const Text("Giá: "),
-              Text(service.price.format()),
-              const Text(" VNĐ"),
-            ],
+          Text(
+            LocaleKeys.txt_price.tr(args: [service.price.format()]),
           ),
         ],
       ),
@@ -445,10 +441,9 @@ class _CreateBillScreenState extends State<CreateBillScreen> {
           ),
           Row(
             children: [
-              const Text("Giá: "),
-              Text(medicineSelect.price.format()),
-              const Text(" VNĐ"),
-              Text("/${medicineSelect.unit}"),
+              Text(LocaleKeys.txt_price
+                  .tr(args: [medicineSelect.price.format()])),
+              Text(" /${medicineSelect.unit}"),
             ],
           ),
         ],
@@ -477,9 +472,9 @@ class _CreateBillScreenState extends State<CreateBillScreen> {
       child: AppTextField(
         enable: false,
         controller: patientController,
-        label: "Bệnh nhân",
-        hint: "Chọn bệnh nhân",
-        errorMess: "Vui lòng chọn bệnh nhân!",
+        label: LocaleKeys.patients.tr(),
+        hint: LocaleKeys.txt_select_doctor_hint.tr(),
+        errorMess: LocaleKeys.txt_select_patient_error.tr(),
         isRequire: true,
         prefixIcon: const Icon(
           Icons.person,
@@ -510,9 +505,9 @@ class _CreateBillScreenState extends State<CreateBillScreen> {
       child: AppTextField(
         enable: false,
         controller: doctorController,
-        label: "Bác Sĩ",
-        hint: "Chọn Bác Sĩ",
-        errorMess: "Vui lòng chọn bác sĩ!",
+        label: LocaleKeys.doctor.tr(),
+        hint: LocaleKeys.txt_select_doctor_hint.tr(),
+        errorMess: LocaleKeys.txt_select_doctor_error.tr(),
         isRequire: true,
         prefixIcon: const Icon(
           Icons.person,

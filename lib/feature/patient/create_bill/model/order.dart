@@ -33,6 +33,6 @@ class OrderProvider {
   });
 
   Future<int> insert(Order order) async {
-    return await transaction.insert("order", order.toJson());
+    return await transaction.insert("orderP", order.toJson());
   }
 }
